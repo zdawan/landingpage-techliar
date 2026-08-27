@@ -96,12 +96,12 @@ button {
 ======================================== */
 
 @keyframes techliar-scroll {
-  from {
+  0% {
     transform: translateX(0);
   }
 
-  to {
-    transform: translateX(calc(-50% - 8px));
+  100% {
+    transform: translateX(-50%);
   }
 }
 
