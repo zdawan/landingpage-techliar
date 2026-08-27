@@ -239,42 +239,42 @@ export default function Home() {
                             <div className="techliar-image-card">
                                 <img
                                     src="/images/hero.png"
-                                    alt=""
+                                    alt="Techliar engineering"
                                 />
                             </div>
 
                             <div className="techliar-image-card">
                                 <img
-                                    src="/images/showcase-02.jpg"
-                                    alt=""
+                                    src="/images/hero.png"
+                                    alt="Techliar engineering"
                                 />
                             </div>
 
                             <div className="techliar-image-card">
                                 <img
-                                    src="/images/showcase-03.jpg"
-                                    alt=""
+                                    src="/images/hero.png"
+                                    alt="Techliar engineering"
                                 />
                             </div>
 
                             <div className="techliar-image-card">
                                 <img
-                                    src="/images/showcase-04.jpg"
-                                    alt=""
+                                    src="/images/hero.png"
+                                    alt="Techliar engineering"
                                 />
                             </div>
 
                             <div className="techliar-image-card">
                                 <img
-                                    src="/images/showcase-05.jpg"
-                                    alt=""
+                                    src="/images/hero.png"
+                                    alt="Techliar engineering"
                                 />
                             </div>
 
                             <div className="techliar-image-card">
                                 <img
-                                    src="/images/showcase-06.jpg"
-                                    alt=""
+                                    src="/images/hero.png"
+                                    alt="Techliar engineering"
                                 />
                             </div>
 
