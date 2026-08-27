@@ -1,26 +1,129 @@
+@import url("https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-blue: #0274F5;
+  --black: #08090A;
+  --white: #FFFFFF;
+  --gray: #6B7075;
+
+  --font-switzer: "Switzer", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-switzer);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ========================================
+   TECHLIAR HORIZONTAL SHOWCASE
+======================================== */
+
+.techliar-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.techliar-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: max-content;
+
+  animation: techliar-scroll 35s linear infinite;
+
+  will-change: transform;
+}
+
+.techliar-marquee:hover .techliar-marquee-track {
+  animation-play-state: paused;
+}
+
+
+/* FIXED IMAGE BOX */
+
+.techliar-image-card {
+  width: clamp(200px, 15.5vw, 260px);
+  height: clamp(260px, 20vw, 340px);
+
+  flex: 0 0 clamp(200px, 15.5vw, 260px);
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  background: #d9d9d9;
+}
+
+.techliar-image-card img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.techliar-image-card:hover img {
+  transform: scale(1.05);
+}
+
+
+/* ========================================
+   INFINITE LEFT SCROLL
+======================================== */
+
+@keyframes techliar-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+  .techliar-marquee-track {
+    gap: 10px;
+    animation-duration: 28s;
+  }
+
+  .techliar-image-card {
+    width: 150px;
+    height: 200px;
+
+    flex-basis: 150px;
+
+    border-radius: 12px;
+  }
+
 }
