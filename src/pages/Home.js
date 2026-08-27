@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import { ArrowRight } from "lucide-react";
+import CoreExpertise from "../components/CoreExpertise";
 
 export default function Home() {
     return (
@@ -92,7 +93,7 @@ export default function Home() {
 
             {/* ================= INTRO SECTION ================= */}
 
-            <section className="relative overflow-hidden bg-[#F8F8F7]">
+            <section className="relative overflow-hidden bg-white">
 
                 {/* Intro content */}
                 <div className="mx-auto flex min-h-[420px] items-center justify-center px-6 py-28 md:min-h-[520px] md:py-36">
@@ -285,6 +286,8 @@ export default function Home() {
                 </div>
 
             </section>
+
+            <CoreExpertise />
 
         </main>
     );
