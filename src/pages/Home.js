@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { ArrowRight } from "lucide-react";
 import CoreExpertise from "../components/CoreExpertise";
+import IndustriesSection from "@/components/IndustriesSection";
 
 export default function Home() {
     return (
@@ -288,6 +289,8 @@ export default function Home() {
             </section>
 
             <CoreExpertise />
+
+            <IndustriesSection />
 
         </main>
     );
