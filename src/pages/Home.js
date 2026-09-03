@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import CoreExpertise from "../components/CoreExpertise";
 import IndustriesSection from "@/components/IndustriesSection";
 import WhyChoose from "@/components/WhyChoose";
+import EngineeringProcess from "../components/EngineeringProcess";
 
 export default function Home() {
     return (
@@ -292,6 +293,8 @@ export default function Home() {
             <CoreExpertise />
 
             <IndustriesSection />
+
+            <EngineeringProcess />
 
             <WhyChoose />
 
