@@ -190,12 +190,40 @@ export default function Navbar() {
                 {/* CONTACT BUTTON */}
                 <Link
                     href="/contact"
-                    className="ml-auto flex h-[48px] items-center gap-3 rounded-full bg-[#0274F5] pl-5 pr-2 text-sm font-medium text-white transition hover:-translate-y-[1px] hover:bg-[#0069df] md:ml-0"
+                    className="group relative ml-auto flex h-[46px] items-center overflow-hidden rounded-full bg-[#0274F5] pl-5 pr-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.1)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[1px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] md:ml-0"
                 >
-                    <span className="text-white" >Contact Us</span>
+                    {/* LIQUID WHITE EXPANDING FILL */}
+                    <span className="absolute inset-0 z-0 overflow-hidden rounded-full">
+                        <span className="absolute left-1/2 top-1/2 z-0 h-0 w-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:h-[250px] group-hover:w-[250px]" />
+                    </span>
 
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0274F5]">
-                        <ArrowRight className="h-4 w-4" />
+                    {/* DUAL TEXT SLIDER */}
+                    <span className="relative z-10 h-[18px] overflow-hidden text-xs font-semibold uppercase tracking-wider">
+                        <span className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[18px]">
+                            <span className="flex h-[18px] items-center text-white transition-colors duration-300 group-hover:text-[#0274F5] whitespace-nowrap">
+                                Contact Us
+                            </span>
+                            <span className="flex h-[18px] items-center text-[#0274F5] whitespace-nowrap">
+                                Let's Talk
+                            </span>
+                        </span>
+                    </span>
+
+                    {/* ARROW CIRCLE */}
+                    <span className="relative z-10 ml-3.5 flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white text-[#0274F5] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:bg-[#0274F5] group-hover:text-white">
+                        {/* ARROW OUT */}
+                        <ArrowRight
+                            size={15}
+                            strokeWidth={2.2}
+                            className="absolute transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-6 group-hover:rotate-[-45deg] group-hover:opacity-0"
+                        />
+
+                        {/* ARROW IN */}
+                        <ArrowRight
+                            size={15}
+                            strokeWidth={2.2}
+                            className="absolute -translate-x-6 rotate-[-45deg] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:rotate-0 group-hover:opacity-100"
+                        />
                     </span>
                 </Link>
 
