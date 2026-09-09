@@ -144,68 +144,92 @@ export default function EngineeringProcess() {
                                 type="button"
                                 onClick={() => setActiveIndex(index)}
                                 onMouseEnter={() => setActiveIndex(index)}
-                                className={`group relative flex h-[350px] sm:h-[380px] md:h-[400px] min-w-0 cursor-pointer flex-col overflow-hidden rounded-2xl text-left transition-all duration-700 ease-out ${isActive
-                                    ? "flex-[3.5]"
-                                    : "flex-[1]"
+                                className={`group relative flex h-[360px] sm:h-[390px] md:h-[420px] min-w-0 cursor-pointer flex-col overflow-hidden rounded-2xl text-left transition-all duration-700 ease-[cubic-bezier(0.25,1,0.3,1)] ${isActive
+                                        ? "flex-[3.5]"
+                                        : "flex-[1]"
                                     }`}
-                                style={{
-                                    background: isActive
-                                        ? "linear-gradient(160deg, #0274F5 0%, #8BBBF1 100%)"
-                                        : "#F4F8FC",
-                                }}
                             >
 
-                                {/* ACTIVE CONTENT */}
+                                {/* INACTIVE BACKGROUND */}
 
-                                <div className="flex h-full w-full flex-col justify-between p-5 sm:p-7">
+                                <div className="absolute inset-0 bg-[#F4F8FC] transition-opacity duration-700 ease-out" />
 
-                                    {isActive ? (
-                                        <div>
 
-                                            {/* ICON */}
+                                {/* ACTIVE GRADIENT BACKGROUND */}
 
-                                            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 backdrop-blur-md border border-white/20">
+                                <div
+                                    className={`absolute inset-0 bg-gradient-to-b from-[#0274F5] via-[#2588F3] to-[#7DB5F5] transition-opacity duration-700 ease-out ${isActive ? "opacity-100" : "opacity-0"
+                                        }`}
+                                />
 
-                                                <StepIcon className="h-6 w-6 text-white" strokeWidth={1.8} />
+
+                                {/* CARD CONTENT CONTAINER */}
+
+                                <div className="relative z-10 flex h-full w-full flex-col justify-between p-6 sm:p-7">
+
+                                    <div>
+
+                                        {/* ICON & TITLE BAR */}
+
+                                        <div className="flex items-center gap-3">
+
+                                            <div
+                                                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-500 ${isActive
+                                                        ? "bg-white/15 backdrop-blur-md border border-white/20 text-white"
+                                                        : "bg-[#0274F5]/10 text-[#0274F5]"
+                                                    }`}
+                                            >
+
+                                                <StepIcon className="h-6 w-6" strokeWidth={1.8} />
 
                                             </div>
 
 
-                                            {/* TITLE */}
+                                            {!isActive && (
+                                                <span className="text-xs font-semibold uppercase tracking-wider text-[#0274F5]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                    {step.title}
+                                                </span>
+                                            )}
+
+                                        </div>
+
+
+                                        {/* EXPANDED TEXT CONTENT WITH SMOOTH FADE & SLIDE */}
+
+                                        <div
+                                            className={`transition-all duration-500 ease-out ${isActive
+                                                    ? "mt-5 opacity-100 translate-y-0 max-h-[220px]"
+                                                    : "mt-0 opacity-0 -translate-y-2 max-h-0 pointer-events-none overflow-hidden"
+                                                }`}
+                                        >
 
                                             <h3 className="text-xl sm:text-2xl md:text-[26px] font-medium tracking-[-0.02em] text-white">
                                                 {step.title}
                                             </h3>
-
-
-                                            {/* DESCRIPTION */}
 
                                             <p className="mt-3 max-w-[340px] text-sm sm:text-base font-normal leading-[1.6] text-white/95">
                                                 {step.description}
                                             </p>
 
                                         </div>
-                                    ) : (
-                                        <div className="flex items-center justify-center pt-2 sm:justify-start">
 
-                                            <span className="text-sm font-semibold uppercase tracking-wider text-[#0274F5]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                {step.title}
-                                            </span>
-
-                                        </div>
-                                    )}
+                                    </div>
 
 
                                     {/* STEP NUMBER */}
 
-                                    <span
-                                        className={`mt-auto block font-semibold leading-none tracking-[-0.04em] transition-all duration-500 ${isActive
-                                            ? "text-[42px] sm:text-[54px] md:text-[64px] text-white"
-                                            : "text-[36px] sm:text-[46px] md:text-[54px] text-[#0274F5]"
-                                            }`}
-                                    >
-                                        {step.number}
-                                    </span>
+                                    <div className="mt-auto pt-4">
+
+                                        <span
+                                            className={`block font-semibold leading-none tracking-[-0.04em] transition-all duration-500 ${isActive
+                                                    ? "text-[44px] sm:text-[56px] md:text-[66px] text-white"
+                                                    : "text-[32px] sm:text-[42px] md:text-[50px] text-[#0274F5]"
+                                                }`}
+                                        >
+                                            {step.number}
+                                        </span>
+
+                                    </div>
 
                                 </div>
 
