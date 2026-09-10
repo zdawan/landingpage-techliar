@@ -51,7 +51,7 @@ export default function IndustriesWeWork() {
 
                         <div className="relative z-20 flex w-full items-center justify-center md:justify-end md:pr-10 lg:pr-16">
 
-                            <h3 className="whitespace-nowrap text-center text-[24px] font-medium tracking-[-0.045em] text-[#111111] sm:text-[30px] md:text-right md:text-[39px]">
+                            <h3 className="flex h-[64px] items-center whitespace-nowrap text-center text-[24px] font-medium leading-none tracking-[-0.045em] text-[#111111] sm:text-[30px] md:text-right md:text-[36px] lg:text-[39px]">
                                 We serve
                             </h3>
 
@@ -59,26 +59,26 @@ export default function IndustriesWeWork() {
 
                         {/* BOTTOM ON MOBILE / RIGHT ON DESKTOP */}
 
-                        <div className="relative flex h-[240px] w-full items-center justify-center overflow-hidden sm:h-[280px] md:h-[360px] md:justify-start md:pl-10 lg:pl-16">
+                        <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden sm:h-[340px] md:h-[360px] md:justify-start md:pl-10 lg:pl-16">
 
                             {/* TOP FADE */}
 
-                            <div className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[80px] bg-gradient-to-b from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent sm:h-[100px] md:h-[110px]" />
+                            <div className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[100px] bg-gradient-to-b from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent sm:h-[110px]" />
 
                             {/* BOTTOM FADE */}
 
-                            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[80px] bg-gradient-to-t from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent sm:h-[100px] md:h-[110px]" />
+                            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[100px] bg-gradient-to-t from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent sm:h-[110px]" />
 
                             {/* CENTER ACTIVE INDICATOR */}
 
-                            <div className="pointer-events-none absolute left-0 right-0 top-1/2 z-10 h-[56px] -translate-y-1/2 md:h-[64px]" />
+                            <div className="pointer-events-none absolute left-0 right-0 top-1/2 z-10 h-[64px] -translate-y-1/2" />
 
                             {/* LIST */}
 
                             <div
                                 className="absolute left-0 flex w-full flex-col items-center text-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:left-10 md:w-[calc(100%-40px)] md:items-start md:text-left lg:left-16 lg:w-[calc(100%-64px)]"
                                 style={{
-                                    transform: `translateY(calc(50% - ${(activeIndex + 0.5) * 56}px))`,
+                                    transform: `translateY(calc(50% - ${(activeIndex + 0.5) * 64}px))`,
                                 }}
                             >
                                 {industries.map((industry, index) => {
@@ -90,17 +90,20 @@ export default function IndustriesWeWork() {
                                             key={industry}
                                             onClick={() => setActiveIndex(index)}
                                             className={`
-                                                h-[56px]
+                                                flex
+                                                h-[64px]
                                                 w-full
+                                                items-center
+                                                justify-center
                                                 text-center
                                                 text-[20px]
                                                 font-medium
-                                                leading-[1.1]
+                                                leading-none
                                                 tracking-[-0.035em]
                                                 transition-all
                                                 duration-500
                                                 sm:text-[26px]
-                                                md:h-[64px]
+                                                md:justify-start
                                                 md:text-left
                                                 md:text-[36px]
                                                 lg:text-[39px]
