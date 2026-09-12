@@ -55,27 +55,27 @@ export default function FinalCTA() {
 
                 <a
                     href="/contact"
-                    className="group relative mt-10 inline-flex h-[66px] items-center rounded-full bg-white pl-8 pr-2.5 shadow-[0_12px_35px_rgba(0,0,0,0.16)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.22)]"
+                    className="group relative mt-10 inline-flex h-[66px] items-center rounded-full bg-[#0274F5] pl-8 pr-2.5 shadow-[0_12px_35px_rgba(0,0,0,0.16)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.22)]"
                 >
-                    {/* LIQUID BLUE EXPANDING FILL */}
+                    {/* LIQUID WHITE EXPANDING FILL */}
 
                     <span className="absolute inset-0 z-0 overflow-hidden rounded-full">
 
-                        <span className="absolute left-1/2 top-1/2 z-0 h-0 w-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0274F5] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:h-[350px] group-hover:w-[350px]" />
+                        <span className="absolute left-1/2 top-1/2 z-0 h-0 w-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:h-[350px] group-hover:w-[350px]" />
 
                     </span>
 
                     {/* DUAL TEXT SLIDER */}
 
-                    <span className="relative z-10 h-[24px] overflow-hidden text-[15px] font-semibold">
+                    <span className="relative z-10 h-[24px] overflow-hidden text-[15px] font-semibold text-white">
 
                         <span className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[24px]">
 
-                            <span className="flex h-[24px] items-center text-[#111111] transition-colors duration-300 group-hover:text-white whitespace-nowrap">
+                            <span className="flex h-[24px] items-center text-white transition-colors duration-300 group-hover:text-[#0274F5] whitespace-nowrap">
                                 Contact us
                             </span>
 
-                            <span className="flex h-[24px] items-center text-white whitespace-nowrap">
+                            <span className="flex h-[24px] items-center text-[#0274F5] whitespace-nowrap">
                                 Start a conversation
                             </span>
 
@@ -85,7 +85,7 @@ export default function FinalCTA() {
 
                     {/* ARROW CIRCLE */}
 
-                    <span className="relative z-10 ml-7 flex h-[50px] w-[50px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#0274F5] text-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:bg-white group-hover:text-[#0274F5]">
+                    <span className="relative z-10 ml-7 flex h-[50px] w-[50px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white text-[#0274F5] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:bg-[#0274F5] group-hover:text-white">
 
                         {/* ARROW OUT */}
 

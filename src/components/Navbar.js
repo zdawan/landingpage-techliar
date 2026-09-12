@@ -78,20 +78,74 @@ export default function Navbar() {
 
     const [activeSolution, setActiveSolution] = useState(solutionsList[0]);
 
-    // Close dropdown on click outside
+    const [scrolled, setScrolled] = useState(false);
+
+    // Close dropdown on click outside & track scroll direction anywhere on page
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsMenuOpen(false);
             }
         }
+
+        let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
+
+        function handleScroll() {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY;
+
+            // Trigger direction change anywhere on page with 3px jitter tolerance
+            if (Math.abs(delta) > 3) {
+                if (delta > 0 && currentScrollY > 10) {
+                    // Scrolling down anywhere -> shrink 30%
+                    setScrolled(true);
+                } else if (delta < 0) {
+                    // Scrolling up anywhere -> expand back to default state
+                    setScrolled(false);
+                }
+                lastScrollY = currentScrollY;
+            }
+        }
+
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     return (
-        <header className="absolute left-1/2 top-6 z-50 w-[calc(100%-48px)] max-w-[1160px] -translate-x-1/2">
-            <div className="flex h-[66px] items-center rounded-full border border-white/40 bg-white/10 px-3 pl-6 shadow-lg backdrop-blur-xl transition duration-300 hover:bg-white/15 hover:border-white/60">
+        <motion.header
+            initial={false}
+            animate={{
+                top: scrolled ? 16 : 24,
+                width: scrolled ? "70%" : "100%",
+                maxWidth: scrolled ? "812px" : "1160px",
+            }}
+            transition={{
+                duration: 0.45,
+                ease: [0.16, 1, 0.3, 1],
+            }}
+            className="fixed left-1/2 z-50 -translate-x-1/2"
+            style={{
+                width: scrolled ? "70%" : "calc(100% - 48px)",
+            }}
+        >
+            <motion.div
+                animate={{
+                    height: scrolled ? 54 : 66,
+                    paddingLeft: scrolled ? 18 : 24,
+                    paddingRight: scrolled ? 8 : 12,
+                }}
+                transition={{
+                    duration: 0.45,
+                    ease: [0.16, 1, 0.3, 1],
+                }}
+                className="flex items-center rounded-full border border-white/60 bg-white/50 ring-1 ring-black/5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-xl backdrop-saturate-150 transition duration-300 hover:bg-white/65 hover:border-white/80"
+            >
 
                 {/* LOGO */}
                 <Link href="/" className="flex items-center gap-3">
@@ -101,10 +155,10 @@ export default function Navbar() {
                         <span className="h-[16px] w-[4px] rounded-full bg-white" />
                     </span>
                     <span className="flex flex-col leading-none">
-                        <strong className="text-base font-bold tracking-[-0.03em] text-white">
+                        <strong className="text-base font-bold tracking-[-0.03em] text-[#111111]">
                             TECHLIAR
                         </strong>
-                        <small className="mt-1 text-[9px] font-semibold tracking-[0.14em] text-[#6FA9F5]">
+                        <small className="mt-1 text-[9px] font-semibold tracking-[0.14em] text-[#0274F5]">
                             AUTOMATION
                         </small>
                     </span>
@@ -114,16 +168,16 @@ export default function Navbar() {
                 <nav className="ml-auto mr-8 hidden items-center gap-7 md:flex">
                     <Link
                         href="/"
-                        className="text-sm font-medium text-white transition-opacity hover:opacity-80"
-                        style={{ color: "#ffffff" }}
+                        className="text-sm font-medium text-[#111111] transition-opacity hover:opacity-80"
+                        style={{ color: "#111111" }}
                     >
                         Home
                     </Link>
 
                     <Link
                         href="/about"
-                        className="text-sm font-medium text-white transition-opacity hover:opacity-80"
-                        style={{ color: "#ffffff" }}
+                        className="text-sm font-medium text-[#111111] transition-opacity hover:opacity-80"
+                        style={{ color: "#111111" }}
                     >
                         About
                     </Link>
@@ -133,15 +187,15 @@ export default function Navbar() {
                         <button
                             type="button"
                             onClick={() => setIsMenuOpen((prev) => !prev)}
-                            className="flex items-center gap-1.5 text-sm font-medium text-white transition-opacity hover:opacity-80 focus:outline-none"
-                            style={{ color: "#ffffff" }}
+                            className="flex items-center gap-1.5 text-sm font-medium text-[#111111] transition-opacity hover:opacity-80 focus:outline-none"
+                            style={{ color: "#111111" }}
                             aria-expanded={isMenuOpen}
                         >
                             <span>Solutions</span>
                             <ChevronDown
-                                className={`h-4 w-4 text-white transition-transform duration-200 ${isMenuOpen ? "rotate-180" : ""
+                                className={`h-4 w-4 text-[#111111] transition-transform duration-200 ${isMenuOpen ? "rotate-180" : ""
                                     }`}
-                                style={{ color: "#ffffff" }}
+                                style={{ color: "#111111" }}
                             />
                         </button>
 
@@ -286,8 +340,8 @@ export default function Navbar() {
 
                     <Link
                         href="/work"
-                        className="text-sm font-medium text-white transition-opacity hover:opacity-80"
-                        style={{ color: "#ffffff" }}
+                        className="text-sm font-medium text-[#111111] transition-opacity hover:opacity-80"
+                        style={{ color: "#111111" }}
                     >
                         Work
                     </Link>
@@ -330,7 +384,7 @@ export default function Navbar() {
                     </span>
                 </Link>
 
-            </div>
-        </header>
+            </motion.div>
+        </motion.header>
     );
 }
