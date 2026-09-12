@@ -74,41 +74,44 @@ export default function AboutStats() {
 
                 <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
 
-                    {/* ROW 1 */}
-
+                    {/* TOP LEFT: 100+ Products Delivered */}
                     <StatCard
                         value={stats[0].value}
                         title={stats[0].title}
                         description={stats[0].description}
                         index={0}
+                        className="order-1 lg:order-none lg:col-start-1 lg:row-start-1"
                     />
 
+                    {/* BOTTOM LEFT: 14+ Years of Excellence */}
                     <StatCard
                         value={stats[1].value}
                         title={stats[1].title}
                         description={stats[1].description}
                         index={1}
+                        className="order-2 lg:order-none lg:col-start-1 lg:row-start-2"
                     />
 
-                    <ResultDrivenCard />
-
-                    {/* ROW 2 */}
-
+                    {/* TOP RIGHT: 7+ Industries Served */}
                     <StatCard
                         value={stats[2].value}
                         title={stats[2].title}
                         description={stats[2].description}
                         index={2}
+                        className="order-3 lg:order-none lg:col-start-3 lg:row-start-1"
                     />
 
-                    <ImageCard />
-
+                    {/* BOTTOM RIGHT: 50+ Active Projects */}
                     <StatCard
                         value={stats[3].value}
                         title={stats[3].title}
                         description={stats[3].description}
                         index={3}
+                        className="order-4 lg:order-none lg:col-start-3 lg:row-start-2"
                     />
+
+                    {/* CENTER: Result Driven Card (Last on Mobile, Center Spanning on Desktop) */}
+                    <ResultDrivenCard />
 
                 </div>
 
@@ -128,6 +131,7 @@ function StatCard({
     title,
     description,
     index,
+    className = "",
 }) {
     return (
         <motion.div
@@ -148,7 +152,7 @@ function StatCard({
                 delay: index * 0.08,
                 ease: [0.16, 1, 0.3, 1],
             }}
-            className="group relative flex h-[270px] flex-col justify-between overflow-hidden rounded-[16px] border border-[#E4E7EA] bg-white p-6 pt-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#B9D8FB] hover:shadow-[0_12px_35px_rgba(2,116,245,0.07)] sm:h-[290px] sm:p-7 sm:pt-9"
+            className={`group relative flex h-[270px] flex-col justify-between overflow-hidden rounded-[16px] border border-[#E4E7EA] bg-white p-6 pt-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#B9D8FB] hover:shadow-[0_12px_35px_rgba(2,116,245,0.07)] sm:h-[290px] sm:p-7 sm:pt-9 ${className}`}
         >
 
             {/* NUMBER */}
@@ -225,7 +229,7 @@ function ResultDrivenCard() {
                 delay: 0.15,
                 ease: [0.16, 1, 0.3, 1],
             }}
-            className="group relative flex h-[270px] flex-col justify-between overflow-hidden rounded-[16px] bg-gradient-to-b from-[#0274F5] via-[#2588F3] to-[#BFDFFF] p-6 text-white sm:h-[290px] sm:p-7"
+            className="group relative flex min-h-[270px] flex-col justify-between overflow-hidden rounded-[16px] bg-gradient-to-b from-[#0274F5] via-[#2588F3] to-[#BFDFFF] p-6 text-white sm:min-h-[290px] sm:p-7 order-last lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:h-full"
         >
 
             {/* CONTENT */}
@@ -236,7 +240,7 @@ function ResultDrivenCard() {
                     Result Driven
                 </h3>
 
-                <p className="mt-1.5 max-w-[200px] text-xs leading-[1.5] text-white/90 sm:text-sm">
+                <p className="mt-1.5 max-w-[220px] text-xs leading-[1.5] text-white/90 sm:text-sm">
                     We combine engineering expertise with intelligent
                     technology to create real-world results.
                 </p>
@@ -246,7 +250,7 @@ function ResultDrivenCard() {
 
             {/* SMALL RESULT IMAGE */}
 
-            <div className="absolute left-1/2 top-[52%] w-[130px] -translate-x-1/2 -translate-y-1/2 sm:w-[145px]">
+            <div className="my-4 relative z-10 mx-auto w-[150px] sm:w-[175px]">
 
                 <img
                     src="/images/why/result-driven.png"
@@ -269,57 +273,17 @@ function ResultDrivenCard() {
                     className="mt-1 tracking-[-0.05em]"
                     style={{
                         fontFamily: '"Bricolage Grotesque", sans-serif',
-                        fontSize: 'clamp(32px, 3.5vw, 42px)',
+                        fontSize: 'clamp(36px, 4vw, 48px)',
                         fontWeight: 400,
                         fontStyle: 'normal',
                         lineHeight: '1.0',
                         color: '#FFFFFF',
                     }}
                 >
-                    99<span className="text-[20px] text-white/80 sm:text-[24px]">%</span>
+                    99<span className="text-[22px] text-white/80 sm:text-[26px]">%</span>
                 </div>
 
             </div>
-
-        </motion.div>
-    );
-}
-
-
-/* =========================================
-   IMAGE CARD
-========================================= */
-
-function ImageCard() {
-    return (
-        <motion.div
-            initial={{
-                opacity: 0,
-                y: 25,
-            }}
-            whileInView={{
-                opacity: 1,
-                y: 0,
-            }}
-            viewport={{
-                once: true,
-                margin: "-50px",
-            }}
-            transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: [0.16, 1, 0.3, 1],
-            }}
-            className="group relative h-[270px] overflow-hidden rounded-[16px] bg-[#EAF4FF] sm:h-[290px]"
-        >
-
-            <img
-                src="/images/why/result-driven.png"
-                alt="Techliar engineering"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0274F5]/20 to-transparent" />
 
         </motion.div>
     );

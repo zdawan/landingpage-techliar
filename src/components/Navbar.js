@@ -182,6 +182,14 @@ export default function Navbar() {
                         About
                     </Link>
 
+                    <Link
+                        href="/solutions"
+                        className="text-sm font-medium text-[#111111] transition-opacity hover:opacity-80"
+                        style={{ color: "#111111" }}
+                    >
+                        Solutions
+                    </Link>
+
                     {/* MEGA DROPDOWN MENU */}
                     <div className="relative" ref={dropdownRef}>
                         <button
@@ -191,7 +199,7 @@ export default function Navbar() {
                             style={{ color: "#111111" }}
                             aria-expanded={isMenuOpen}
                         >
-                            <span>Solutions</span>
+                            <span>Work</span>
                             <ChevronDown
                                 className={`h-4 w-4 text-[#111111] transition-transform duration-200 ${isMenuOpen ? "rotate-180" : ""
                                     }`}
@@ -337,14 +345,6 @@ export default function Navbar() {
                             )}
                         </AnimatePresence>
                     </div>
-
-                    <Link
-                        href="/work"
-                        className="text-sm font-medium text-[#111111] transition-opacity hover:opacity-80"
-                        style={{ color: "#111111" }}
-                    >
-                        Work
-                    </Link>
                 </nav>
 
                 {/* CONTACT BUTTON */}
