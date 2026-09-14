@@ -179,20 +179,13 @@ export default function Navbar() {
                 >
 
                     {/* LOGO */}
-                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2.5 sm:gap-3">
-                        <span className="flex h-8 w-8 sm:h-9 sm:w-9 -skew-x-[8deg] items-center justify-center gap-[3px] rounded-[10px] bg-[#0274F5] shadow-md shrink-0">
-                            <span className="h-[11px] sm:h-[13px] w-[3.5px] sm:w-[4px] rounded-full bg-white" />
-                            <span className="h-5 sm:h-6 w-[3.5px] sm:w-[4px] rounded-full bg-white" />
-                            <span className="h-[14px] sm:h-[16px] w-[3.5px] sm:w-[4px] rounded-full bg-white" />
-                        </span>
-                        <span className="flex flex-col leading-none">
-                            <strong className="text-sm sm:text-base font-bold tracking-[-0.03em] text-[#111111]">
-                                TECHLIAR
-                            </strong>
-                            <small className="mt-0.5 sm:mt-1 text-[8px] sm:text-[9px] font-semibold tracking-[0.14em] text-[#0274F5]">
-                                AUTOMATION
-                            </small>
-                        </span>
+                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center shrink-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/images/logo.png"
+                            alt="Techlair Automation"
+                            className="h-8 sm:h-10 w-auto object-contain max-w-[180px] sm:max-w-[220px]"
+                        />
                     </Link>
 
                     {/* DESKTOP NAVIGATION */}
