@@ -12,27 +12,92 @@ import { motion, AnimatePresence } from "framer-motion";
 import IndustriesWeWork from "../components/IndustriesWeWork";
 
 export default function Home() {
-    const [loaderFinished, setLoaderFinished] = useState(false);
+    const [loaderFinished, setLoaderFinished] = useState(true);
+    const [isFirstVisit, setIsFirstVisit] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoaderFinished(true);
-        }, 1600);
-        return () => clearTimeout(timer);
+        const hasVisited = sessionStorage.getItem("techliar_has_visited");
+        if (!hasVisited) {
+            sessionStorage.setItem("techliar_has_visited", "true");
+            const startTimer = setTimeout(() => {
+                setIsFirstVisit(true);
+                setLoaderFinished(false);
+            }, 0);
+
+            const finishTimer = setTimeout(() => {
+                setLoaderFinished(true);
+            }, 900);
+
+            return () => {
+                clearTimeout(startTimer);
+                clearTimeout(finishTimer);
+            };
+        }
     }, []);
+
+    const getDelay = (delayVal) => (isFirstVisit ? delayVal : 0.05);
 
     return (
         <main className="bg-white overflow-hidden">
 
-            {/* ================= KORA FULLSCREEN PRELOADER OVERLAY ================= */}
+            {/* ================= DUAL-CURTAIN APERTURE PRELOADER ================= */}
             <AnimatePresence>
                 {!loaderFinished && (
-                    <motion.div
-                        initial={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="fixed inset-0 z-40 bg-[#FAF9F5] pointer-events-none"
-                    />
+                    <div className="fixed inset-0 z-[100] pointer-events-none flex flex-col justify-between overflow-hidden">
+                        {/* Top Panel */}
+                        <motion.div
+                            initial={{ y: "0%" }}
+                            exit={{ y: "-100%" }}
+                            transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+                            className="h-1/2 w-full bg-[#090B10] border-b border-white/10 relative flex items-end justify-center pb-6"
+                        >
+                            <motion.div
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -15 }}
+                                transition={{ duration: 0.4 }}
+                                className="flex items-center gap-3"
+                            >
+                                <motion.span
+                                    animate={{ rotate: 180 }}
+                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                    className="text-xl text-[#0274F5]"
+                                >
+                                    ◇
+                                </motion.span>
+                                <span className="text-2xl font-bold tracking-[0.2em] text-white uppercase">
+                                    Tech<span className="text-[#0274F5]">liar</span>
+                                </span>
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Center Seam Progress Beam */}
+                        <motion.div
+                            initial={{ scaleX: 0, opacity: 0 }}
+                            animate={{ scaleX: 1, opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[110] h-[2px] w-64 bg-gradient-to-r from-transparent via-[#0274F5] to-transparent origin-center"
+                        />
+
+                        {/* Bottom Panel */}
+                        <motion.div
+                            initial={{ y: "0%" }}
+                            exit={{ y: "100%" }}
+                            transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+                            className="h-1/2 w-full bg-[#090B10] border-t border-white/10 relative flex items-start justify-center pt-6"
+                        >
+                            <motion.span
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
+                                transition={{ duration: 0.4, delay: 0.1 }}
+                                className="text-[11px] font-semibold tracking-[0.3em] text-white/60 uppercase"
+                            >
+                                Engineering • Automation • Innovation
+                            </motion.span>
+                        </motion.div>
+                    </div>
                 )}
             </AnimatePresence>
 
@@ -41,42 +106,16 @@ export default function Home() {
 
             <section className="relative h-screen min-h-[700px] overflow-hidden bg-[#FAF9F5]">
 
-                {/* KORA CENTER-TO-FULL EXPANDING HERO MEDIA */}
+                {/* HERO MEDIA ZOOM & REVEAL */}
                 <motion.div
-                    initial={{
-                        width: "320px",
-                        height: "190px",
-                        borderRadius: "28px",
-                        top: "50%",
-                        left: "50%",
-                        x: "-50%",
-                        y: "-50%",
-                        opacity: 0,
-                        scale: 0.9,
-                    }}
-                    animate={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "0px",
-                        top: "0%",
-                        left: "0%",
-                        x: "0%",
-                        y: "0%",
-                        opacity: 1,
-                        scale: 1,
-                    }}
+                    initial={{ opacity: 0, scale: 1.08 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{
-                        opacity: { duration: 0.4, delay: 0.1 },
-                        scale: { duration: 0.4, delay: 0.1 },
-                        width: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
-                        height: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
-                        borderRadius: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
-                        top: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
-                        left: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
-                        x: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
-                        y: { duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] },
+                        duration: 1.2,
+                        delay: getDelay(0.2),
+                        ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="absolute z-10 overflow-hidden bg-cover bg-center shadow-[0_25px_60px_rgba(0,0,0,0.18)]"
+                    className="absolute inset-0 z-10 overflow-hidden bg-cover bg-center"
                     style={{
                         backgroundImage: "url('/images/hero.png')",
                     }}
@@ -85,7 +124,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 1.1 }}
+                        transition={{ duration: 0.8, delay: getDelay(0.4) }}
                         className="absolute inset-0 bg-black/35"
                     />
 
@@ -93,7 +132,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 1.2 }}
+                        transition={{ duration: 0.8, delay: getDelay(0.5) }}
                         className="absolute bottom-0 left-0 right-0 z-10 h-44 bg-gradient-to-b from-transparent via-white/60 to-white"
                     />
                 </motion.div>
@@ -103,7 +142,7 @@ export default function Home() {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, delay: getDelay(0.4), ease: [0.16, 1, 0.3, 1] }}
                     className="relative z-50"
                 >
                     <Navbar />
@@ -115,9 +154,9 @@ export default function Home() {
                 <div className="relative z-20 flex h-full items-center justify-center px-6 pt-16 text-center">
 
                     <motion.div
-                        initial={{ opacity: 0, y: 35 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.9, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.9, delay: getDelay(0.5), ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-[1000px]"
                     >
 
@@ -125,7 +164,7 @@ export default function Home() {
                         <motion.p
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, delay: getDelay(0.55), ease: [0.16, 1, 0.3, 1] }}
                             className="mb-5 text-xs font-semibold tracking-[0.25em] text-white/85"
                         >
                             ENGINEERING • AUTOMATION • INNOVATION
@@ -136,7 +175,7 @@ export default function Home() {
                         <motion.h1
                             initial={{ opacity: 0, y: 25 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 1, delay: getDelay(0.65), ease: [0.16, 1, 0.3, 1] }}
                             className="text-[clamp(45px,5.5vw,76px)] font-medium leading-[1.02] tracking-[-0.04em] text-white"
                         >
 
@@ -157,7 +196,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 1.55, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, delay: getDelay(0.8), ease: [0.16, 1, 0.3, 1] }}
                         >
                             <a
                                 href="/contact"
@@ -185,7 +224,7 @@ export default function Home() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 1.7, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1, delay: getDelay(0.95), ease: [0.16, 1, 0.3, 1] }}
                     className="absolute bottom-10 left-1/2 z-30 -translate-x-1/2"
                 >
                     <div className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.22em] text-[#111111]">
