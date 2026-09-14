@@ -251,20 +251,13 @@ export default function Navbar() {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 8, scale: 0.98 }}
                                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                                        className="absolute -left-64 top-full mt-4 w-[740px] lg:w-[820px] rounded-3xl border border-gray-200/80 bg-white p-4 shadow-[0_25px_60px_rgba(0,0,0,0.18)] backdrop-blur-2xl"
+                                        className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[740px] lg:w-[820px] max-w-[calc(100vw-48px)] rounded-3xl border border-gray-200/80 bg-white p-4 shadow-[0_25px_60px_rgba(0,0,0,0.18)] backdrop-blur-2xl"
                                     >
                                         <div className="grid grid-cols-12 gap-4">
 
                                             {/* LEFT COLUMN: LIST OF TABS */}
                                             <div className="col-span-6 flex flex-col justify-between p-2">
                                                 <div>
-                                                    <div className="mb-3 px-3 py-1 flex items-center justify-between">
-                                                        <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
-                                                            <Sparkles className="h-3 w-3 text-[#0274F5]" />
-                                                            Engineering Expertise
-                                                        </span>
-                                                    </div>
-
                                                     <div className="flex flex-col gap-1">
                                                         {solutionsList.map((item) => {
                                                             const isActive = activeSolution.id === item.id;
@@ -322,7 +315,7 @@ export default function Navbar() {
 
                                             {/* RIGHT COLUMN: DYNAMIC PREVIEW CARD */}
                                             <div className="col-span-6">
-                                                <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#0B0F17] p-5 text-white shadow-inner flex flex-col justify-between border border-gray-800">
+                                                <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#0B0F17] p-4 text-white shadow-inner flex flex-col justify-between border border-gray-800">
 
                                                     {/* DYNAMIC CONTENT FADE */}
                                                     <AnimatePresence mode="wait">
@@ -332,28 +325,22 @@ export default function Navbar() {
                                                             animate={{ opacity: 1, y: 0 }}
                                                             exit={{ opacity: 0, y: -10 }}
                                                             transition={{ duration: 0.2 }}
-                                                            className="flex flex-col h-full justify-between gap-4"
+                                                            className="flex flex-col h-full justify-between gap-3"
                                                         >
-                                                            {/* IMAGE BOX */}
-                                                            <div className="relative h-44 w-full overflow-hidden rounded-xl bg-gray-900 border border-white/10">
+                                                            {/* IMAGE BOX (75% HEIGHT OF PREVIEW CARD, NO TAGS) */}
+                                                            <div className="relative h-[210px] w-full overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                                                 <img
                                                                     src={activeSolution.image}
                                                                     alt={activeSolution.title}
                                                                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                                                                 />
-                                                                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-black/20" />
-                                                                <span className="absolute top-3 left-3 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-white border border-white/20">
-                                                                    {activeSolution.category}
-                                                                </span>
+                                                                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17]/80 via-transparent to-transparent" />
                                                             </div>
 
-                                                            {/* TEXT CONTENT */}
-                                                            <div className="flex flex-col gap-1.5">
-                                                                <span className="text-[11px] font-semibold tracking-wider text-[#0274F5] uppercase">
-                                                                    {activeSolution.stats}
-                                                                </span>
-                                                                <h4 className="text-lg font-bold leading-tight text-white">
+                                                            {/* TEXT CONTENT: TITLE & SMALL DESC */}
+                                                            <div className="flex flex-col gap-1 px-1">
+                                                                <h4 className="text-base font-bold leading-tight text-white">
                                                                     {activeSolution.title}
                                                                 </h4>
                                                                 <p className="text-xs text-gray-300 leading-relaxed font-normal">
@@ -365,7 +352,7 @@ export default function Navbar() {
                                                             <Link
                                                                 href={activeSolution.href}
                                                                 onClick={() => setIsMenuOpen(false)}
-                                                                className="group/btn mt-2 inline-flex items-center justify-between w-full rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-white hover:text-black"
+                                                                className="group/btn mt-1 inline-flex items-center justify-between w-full rounded-md border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[#0274F5] hover:border-[#0274F5] hover:text-white hover:shadow-md"
                                                             >
                                                                 <span>Learn more</span>
                                                                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
@@ -491,9 +478,8 @@ export default function Navbar() {
                                     >
                                         <span>Work</span>
                                         <ChevronDown
-                                            className={`h-7 w-7 text-gray-500 transition-transform duration-300 ${
-                                                isMobileWorkExpanded ? "rotate-180 text-[#0274F5]" : ""
-                                            }`}
+                                            className={`h-7 w-7 text-gray-500 transition-transform duration-300 ${isMobileWorkExpanded ? "rotate-180 text-[#0274F5]" : ""
+                                                }`}
                                         />
                                     </button>
 
