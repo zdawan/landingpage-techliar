@@ -62,7 +62,7 @@ export default function EngineeringProcess() {
                         />
 
                         <span>
-                            Engineering Process
+                            Techliar Process
                         </span>
 
                     </div>
@@ -145,8 +145,8 @@ export default function EngineeringProcess() {
                                 onClick={() => setActiveIndex(index)}
                                 onMouseEnter={() => setActiveIndex(index)}
                                 className={`group relative flex h-[360px] sm:h-[390px] md:h-[420px] min-w-0 cursor-pointer flex-col overflow-hidden rounded-2xl text-left transition-all duration-700 ease-[cubic-bezier(0.25,1,0.3,1)] ${isActive
-                                        ? "flex-[3.5]"
-                                        : "flex-[1]"
+                                    ? "flex-[3.5]"
+                                    : "flex-[1]"
                                     }`}
                             >
 
@@ -175,8 +175,8 @@ export default function EngineeringProcess() {
 
                                             <div
                                                 className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-500 ${isActive
-                                                        ? "bg-white/15 backdrop-blur-md border border-white/20 text-white"
-                                                        : "bg-[#0274F5]/10 text-[#0274F5]"
+                                                    ? "bg-white/15 backdrop-blur-md border border-white/20 text-white"
+                                                    : "bg-[#0274F5]/10 text-[#0274F5]"
                                                     }`}
                                             >
 
@@ -198,8 +198,8 @@ export default function EngineeringProcess() {
 
                                         <div
                                             className={`transition-all duration-500 ease-out ${isActive
-                                                    ? "mt-5 opacity-100 translate-y-0 max-h-[220px]"
-                                                    : "mt-0 opacity-0 -translate-y-2 max-h-0 pointer-events-none overflow-hidden"
+                                                ? "mt-5 opacity-100 translate-y-0 max-h-[220px]"
+                                                : "mt-0 opacity-0 -translate-y-2 max-h-0 pointer-events-none overflow-hidden"
                                                 }`}
                                         >
 
@@ -222,8 +222,8 @@ export default function EngineeringProcess() {
 
                                         <span
                                             className={`block font-semibold leading-none tracking-[-0.04em] transition-all duration-500 ${isActive
-                                                    ? "text-[44px] sm:text-[56px] md:text-[66px] text-white"
-                                                    : "text-[32px] sm:text-[42px] md:text-[50px] text-[#0274F5]"
+                                                ? "text-[44px] sm:text-[56px] md:text-[66px] text-white"
+                                                : "text-[32px] sm:text-[42px] md:text-[50px] text-[#0274F5]"
                                                 }`}
                                         >
                                             {step.number}

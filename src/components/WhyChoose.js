@@ -42,7 +42,7 @@ export default function WhyChoose() {
                         />
 
                         <span>
-                            Engineering Process
+                            Quality of Techliar
                         </span>
 
                     </div>
