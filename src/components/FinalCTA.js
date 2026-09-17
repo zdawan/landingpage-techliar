@@ -179,29 +179,25 @@ export default function FinalCTA() {
 
                         <div className="grid grid-cols-1 gap-3.5">
 
-                            <a href="/solutions/product-development" className="footer-link">
-                                Product Development
-                            </a>
+                            <Link href="/projects/coconut-harvester" className="footer-link">
+                                Product R&D & CAE
+                            </Link>
 
-                            <a href="/solutions/automation" className="footer-link">
-                                Automation Solutions
-                            </a>
+                            <Link href="/projects/industrial-automation" className="footer-link">
+                                Industrial Automation
+                            </Link>
 
-                            <a href="/solutions/vehicle-engineering" className="footer-link">
-                                Vehicle Engineering
-                            </a>
+                            <Link href="/projects/defense-vehicle" className="footer-link">
+                                Defense Mobility
+                            </Link>
 
-                            <a href="/solutions/embedded-iot" className="footer-link">
+                            <Link href="/projects/embedded-iot" className="footer-link">
                                 Embedded Systems & IoT
-                            </a>
+                            </Link>
 
-                            <a href="/solutions/mechanical-engineering" className="footer-link">
-                                Mechanical Engineering
-                            </a>
-
-                            <a href="/solutions/prototyping-testing" className="footer-link">
-                                Prototyping & Testing
-                            </a>
+                            <Link href="/projects/3-wheeler-vehicle" className="footer-link">
+                                Electric Mobility & EV
+                            </Link>
 
                         </div>
 
@@ -217,21 +213,17 @@ export default function FinalCTA() {
 
                         <div className="flex flex-col gap-3.5">
 
-                            <a href="/about" className="footer-link">
+                            <Link href="/about" className="footer-link">
                                 About Techliar
-                            </a>
+                            </Link>
 
-                            <a href="/process" className="footer-link">
-                                Our Process
-                            </a>
-
-                            <a href="/projects" className="footer-link">
+                            <Link href="/projects" className="footer-link">
                                 Projects
-                            </a>
+                            </Link>
 
-                            <a href="/contact" className="footer-link">
+                            <Link href="/contact" className="footer-link">
                                 Partner With Us
-                            </a>
+                            </Link>
 
                         </div>
 
