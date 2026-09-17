@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
     ChevronDown,
     ArrowRight,
@@ -17,6 +18,7 @@ import {
 } from "lucide-react";
 
 export default function Navbar() {
+    const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobileWorkExpanded, setIsMobileWorkExpanded] = useState(false);
@@ -25,12 +27,12 @@ export default function Navbar() {
     const solutionsList = [
         {
             id: "defense",
-            title: "Defense & Tactical Mobility",
-            category: "Mobility & Chassis",
+            title: "Defense Vehicle",
+            category: "4 Ton Defense Vehicle",
             badge: "Featured",
             desc: "Autonomous tactical platforms, heavy armored vehicle chassis & ruggedized drive systems.",
             image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&auto=format&fit=crop&q=80",
-            href: "/solutions/defense",
+            href: "/projects/defense-vehicle",
             icon: Shield,
             stats: "MIL-STD • Autonomous Ready",
         },
@@ -41,7 +43,7 @@ export default function Navbar() {
             badge: "Popular",
             desc: "Next-gen robotic cells, custom PLC programming, and high-speed automated assembly lines.",
             image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
-            href: "/solutions/automation",
+            href: "/projects/industrial-automation",
             icon: Factory,
             stats: "99.9% Uptime • Industry 4.0",
         },
@@ -52,35 +54,19 @@ export default function Navbar() {
             badge: "New",
             desc: "Custom PCB design, real-time OS firmware development & low-latency edge computing.",
             image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80",
-            href: "/solutions/embedded",
+            href: "/projects/embedded-iot",
             icon: Cpu,
             stats: "Real-time RTOS • Edge AI",
         },
-        {
-            id: "engineering",
-            title: "Product R&D & CAE",
-            category: "Design & Analysis",
-            badge: "Core",
-            desc: "FEA structural simulation, CAD modeling, thermal optimization & rapid prototyping.",
-            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
-            href: "/solutions/engineering",
-            icon: Wrench,
-            stats: "FEA & CFD • Rapid Prototyping",
-        },
-        {
-            id: "healthcare",
-            title: "Healthcare Robotics",
-            category: "Bio-Automation",
-            badge: "Certified",
-            desc: "Precision surgical actuators, diagnostic automation & ISO-13485 compliant devices.",
-            image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80",
-            href: "/solutions/healthcare",
-            icon: HeartPulse,
-            stats: "ISO 13485 • Precision Motors",
-        },
     ];
 
-    const [activeSolution, setActiveSolution] = useState(solutionsList[0]);
+    const [hoveredSolution, setHoveredSolution] = useState(null);
+
+    const activeSolutionFromPath = pathname
+        ? solutionsList.find((item) => item.href === pathname || pathname.startsWith(item.href))
+        : null;
+
+    const activeSolution = hoveredSolution || activeSolutionFromPath || solutionsList[0];
 
     const [scrolled, setScrolled] = useState(false);
     const timeoutRef = useRef(null);
@@ -93,6 +79,7 @@ export default function Navbar() {
     const handleMouseLeave = () => {
         timeoutRef.current = setTimeout(() => {
             setIsMenuOpen(false);
+            setHoveredSolution(null);
         }, 150);
     };
 
@@ -106,6 +93,7 @@ export default function Navbar() {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsMenuOpen(false);
+                setHoveredSolution(null);
             }
         }
 
@@ -244,30 +232,33 @@ export default function Navbar() {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 8, scale: 0.98 }}
                                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                                        className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[740px] lg:w-[820px] max-w-[calc(100vw-48px)] rounded-3xl border border-gray-200/80 bg-white p-4 shadow-[0_25px_60px_rgba(0,0,0,0.18)] backdrop-blur-2xl"
+                                        className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[780px] lg:w-[880px] max-w-[calc(100vw-48px)] rounded-3xl border border-gray-200/80 bg-white p-4 shadow-[0_25px_60px_rgba(0,0,0,0.18)] backdrop-blur-2xl"
                                     >
-                                        <div className="grid grid-cols-12 gap-4">
+                                        <div className="grid grid-cols-12 gap-5">
 
                                             {/* LEFT COLUMN: LIST OF TABS */}
                                             <div className="col-span-6 flex flex-col justify-between p-2">
                                                 <div>
-                                                    <div className="flex flex-col gap-1">
+                                                    <div className="flex flex-col gap-1.5">
                                                         {solutionsList.map((item) => {
                                                             const isActive = activeSolution.id === item.id;
                                                             return (
                                                                 <Link
                                                                     key={item.id}
                                                                     href={item.href}
-                                                                    onMouseEnter={() => setActiveSolution(item)}
-                                                                    onClick={() => setIsMenuOpen(false)}
-                                                                    className={`group relative flex items-center rounded-2xl p-3 px-3.5 transition-all duration-200 ${isActive
+                                                                    onMouseEnter={() => setHoveredSolution(item)}
+                                                                    onClick={() => {
+                                                                        setIsMenuOpen(false);
+                                                                        setHoveredSolution(null);
+                                                                    }}
+                                                                    className={`group relative flex items-center rounded-2xl p-3 px-4 transition-all duration-200 ${isActive
                                                                         ? "bg-[#0274F5]/10"
                                                                         : "hover:bg-gray-100/80"
                                                                         }`}
                                                                 >
                                                                     <div className="flex flex-col flex-1 min-w-0">
                                                                         <div className="flex items-center justify-between">
-                                                                            <span className={`text-sm font-semibold truncate leading-tight transition-colors ${isActive
+                                                                            <span className={`text-base font-semibold truncate leading-tight transition-colors ${isActive
                                                                                 ? "text-[#0274F5]"
                                                                                 : "text-gray-900 group-hover:text-[#0274F5]"
                                                                                 }`}>
@@ -275,7 +266,7 @@ export default function Navbar() {
                                                                             </span>
                                                                             {item.badge && (
                                                                                 <span
-                                                                                    className={`ml-2 text-[10px] font-bold px-2 py-0.5 rounded-full ${isActive
+                                                                                    className={`ml-2 text-xs font-semibold px-2.5 py-0.5 rounded-full ${isActive
                                                                                         ? "bg-[#0274F5] text-white"
                                                                                         : "bg-gray-100 text-gray-600"
                                                                                         }`}
@@ -284,7 +275,7 @@ export default function Navbar() {
                                                                                 </span>
                                                                             )}
                                                                         </div>
-                                                                        <span className="text-xs text-gray-500 truncate mt-0.5 font-normal">
+                                                                        <span className="text-sm text-gray-500 truncate mt-0.5 font-normal">
                                                                             {item.category}
                                                                         </span>
                                                                     </div>
@@ -294,14 +285,14 @@ export default function Navbar() {
                                                     </div>
                                                 </div>
 
-                                                <div className="mt-4 border-t border-gray-100 pt-3 px-3 flex items-center justify-between">
-                                                    <span className="text-xs text-gray-500">Need a custom solution?</span>
+                                                <div className="mt-4 border-t border-gray-100 pt-3.5 px-3 flex items-center justify-between">
+                                                    <span className="text-sm text-gray-500">Need a custom solution?</span>
                                                     <Link
                                                         href="/contact"
                                                         onClick={() => setIsMenuOpen(false)}
-                                                        className="text-xs font-semibold text-[#0274F5] hover:underline flex items-center gap-1"
+                                                        className="text-sm font-semibold text-[#0274F5] hover:underline flex items-center gap-1.5"
                                                     >
-                                                        Talk to Engineer <ArrowRight className="h-3 w-3" />
+                                                        Talk to Engineer <ArrowRight className="h-3.5 w-3.5" />
                                                     </Link>
                                                 </div>
                                             </div>
@@ -318,7 +309,7 @@ export default function Navbar() {
                                                             animate={{ opacity: 1, y: 0 }}
                                                             exit={{ opacity: 0, y: -10 }}
                                                             transition={{ duration: 0.2 }}
-                                                            className="flex flex-col h-full justify-between gap-3"
+                                                            className="flex flex-col h-full justify-between gap-3.5"
                                                         >
                                                             {/* IMAGE BOX (75% HEIGHT OF PREVIEW CARD, NO TAGS) */}
                                                             <div className="relative h-[210px] w-full overflow-hidden rounded-xl bg-gray-900 border border-white/10">
@@ -333,10 +324,10 @@ export default function Navbar() {
 
                                                             {/* TEXT CONTENT: TITLE & SMALL DESC */}
                                                             <div className="flex flex-col gap-1 px-1">
-                                                                <h4 className="text-base font-bold leading-tight text-white">
+                                                                <h4 className="text-lg font-bold leading-tight text-white">
                                                                     {activeSolution.title}
                                                                 </h4>
-                                                                <p className="text-xs text-gray-300 leading-relaxed font-normal">
+                                                                <p className="text-sm text-gray-300 leading-relaxed font-normal">
                                                                     {activeSolution.desc}
                                                                 </p>
                                                             </div>
@@ -345,10 +336,10 @@ export default function Navbar() {
                                                             <Link
                                                                 href={activeSolution.href}
                                                                 onClick={() => setIsMenuOpen(false)}
-                                                                className="group/btn mt-1 inline-flex items-center justify-between w-full rounded-md border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[#0274F5] hover:border-[#0274F5] hover:text-white hover:shadow-md"
+                                                                className="group/btn mt-1 inline-flex items-center justify-between w-full rounded-md border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#0274F5] hover:border-[#0274F5] hover:text-white hover:shadow-md"
                                                             >
                                                                 <span>Learn more</span>
-                                                                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
+                                                                <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                                                             </Link>
                                                         </motion.div>
                                                     </AnimatePresence>
