@@ -103,19 +103,6 @@ export default function IndustriesSection() {
                             <p className="mt-2 text-sm sm:text-[16px] font-normal leading-[1.45] text-[#565A5E]">
                                 {industry.description}
                             </p>
-
-
-                            {/* HOVER ARROW */}
-
-                            <span className="absolute bottom-5 right-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#0274F5] text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
-
-                                <ArrowUpRight
-                                    size={16}
-                                    strokeWidth={2}
-                                />
-
-                            </span>
-
                         </Link>
 
                     ))}
