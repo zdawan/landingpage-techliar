@@ -10,6 +10,7 @@ import EngineeringProcess from "../components/EngineeringProcess";
 import FinalCTA from "../components/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
 import IndustriesWeWork from "../components/IndustriesWeWork";
+import Contactdetails from "@/components/Contactdetails";
 
 export default function Home() {
     const [loaderFinished, setLoaderFinished] = useState(true);
@@ -478,6 +479,8 @@ export default function Home() {
             <EngineeringProcess />
 
             <WhyChoose />
+
+            <Contactdetails />
 
             <FinalCTA />
 
