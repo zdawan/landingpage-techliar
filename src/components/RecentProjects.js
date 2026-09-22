@@ -1,27 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Diamond, ArrowUpRight } from "lucide-react";
+import { Diamond, ArrowUpRight, Car, Sprout, Shield } from "lucide-react";
 
 const projects = [
     {
         id: "01",
+        slug: "3-wheeler-vehicle",
         title: "3-Wheeler Vehicle",
         description: "Building innovative solutions for next-generation mobility.",
-        image: "/images/projects/3-wheeler.jpg",
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1600&auto=format&fit=crop&q=80",
+        icon: Car,
     },
     {
         id: "02",
+        slug: "coconut-harvester",
         title: "Coconut Harvester",
         description: "Building innovative solutions for smarter agriculture.",
-        image: "/images/projects/coconut-harvester.jpg",
+        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1600&auto=format&fit=crop&q=80",
+        icon: Sprout,
     },
     {
         id: "03",
+        slug: "defense-vehicle",
         title: "Defense Vehicle",
         description: "Building innovative solutions for advanced mobility.",
-        image: "/images/projects/defense-vehicle.jpg",
+        image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1600&auto=format&fit=crop&q=80",
+        icon: Shield,
     },
 ];
 
@@ -31,7 +38,7 @@ export default function RecentProjects() {
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveIndex((current) => (current + 1) % projects.length);
-        }, 3000);
+        }, 4000);
 
         return () => clearInterval(interval);
     }, []);
@@ -60,7 +67,7 @@ export default function RecentProjects() {
                         duration: 0.8,
                         ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="mb-14 flex flex-col items-center text-center"
+                    className="mb-12 flex flex-col items-center text-center"
                 >
 
                     {/* EYEBROW */}
@@ -91,108 +98,71 @@ export default function RecentProjects() {
 
                 {/* ================= PROJECT TABS ================= */}
 
-                <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
+                <div className="mb-10 flex justify-center w-full px-2 sm:px-0">
 
-                    {projects.map((project, index) => {
+                    <div className="w-full max-w-[380px] sm:max-w-none sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-1.5 rounded-[28px] sm:rounded-full bg-[#F3F2EE] p-2 border border-black/5 shadow-inner">
 
-                        const isActive = index === activeIndex;
+                        {projects.map((project, index) => {
 
-                        return (
-                            <button
-                                key={project.id}
-                                type="button"
-                                onClick={() => handleTabClick(index)}
-                                className={`
-                                    group relative flex h-[72px] cursor-pointer
-                                    items-center overflow-hidden rounded-[14px]
-                                    px-3.5 sm:h-[76px] sm:px-4 text-left
-                                    transition-all duration-500
-                                    ${isActive
-                                        ? "bg-[#0274F5] text-white shadow-md"
-                                        : "bg-[#F3F4F6] text-[#55595D] hover:bg-[#E5E7EB]"
-                                    }
-                                `}
-                            >
+                            const isActive = index === activeIndex;
+                            const Icon = project.icon;
 
-                                {/* PROJECT ICON BOX */}
-
-                                <div
+                            return (
+                                <button
+                                    key={project.id}
+                                    type="button"
+                                    onClick={() => handleTabClick(index)}
                                     className={`
-                                        flex h-[46px] w-[46px] shrink-0
-                                        items-center justify-center
-                                        rounded-[10px]
-                                        transition-all duration-500
+                                        relative flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full
+                                        px-6 py-3.5 text-sm font-medium
+                                        transition-colors duration-300
                                         ${isActive
-                                            ? "bg-white"
-                                            : "bg-white"
+                                            ? "text-[#111111]"
+                                            : "text-[#666B70] hover:text-[#111111]"
                                         }
                                     `}
                                 >
-                                    <span
-                                        className={`
-                                            text-xs font-bold sm:text-sm
-                                            ${isActive
-                                                ? "text-[#0274F5]"
-                                                : "text-[#8E9398]"
-                                            }
-                                        `}
-                                    >
-                                        {project.id}
+
+                                    {/* ACTIVE PILL BACKGROUND */}
+
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeProjectTab"
+                                            className="absolute inset-0 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 30,
+                                            }}
+                                        />
+                                    )}
+
+
+                                    {/* ICON & TITLE ONLY */}
+
+                                    <span className="relative z-10 flex items-center gap-2.5">
+
+                                        <Icon
+                                            className={`
+                                                h-4.5 w-4.5 transition-colors
+                                                ${isActive
+                                                    ? "text-[#0274F5]"
+                                                    : "text-[#8E9398]"
+                                                }
+                                            `}
+                                        />
+
+                                        <span className="whitespace-nowrap font-medium text-sm sm:text-base">
+                                            {project.title}
+                                        </span>
+
                                     </span>
-                                </div>
 
+                                </button>
+                            );
+                        })}
 
-                                {/* TEXT */}
-
-                                <div className="ml-3.5 min-w-0">
-
-                                    <h3
-                                        className={`
-                                            truncate text-sm font-semibold
-                                            sm:text-base
-                                            ${isActive
-                                                ? "text-white"
-                                                : "text-[#111111]"
-                                            }
-                                        `}
-                                    >
-                                        {project.title}
-                                    </h3>
-
-                                    <p
-                                        className={`
-                                            mt-0.5 truncate text-xs
-                                            sm:text-sm
-                                            ${isActive
-                                                ? "text-white/85"
-                                                : "text-[#8E9398]"
-                                            }
-                                        `}
-                                    >
-                                        {project.description}
-                                    </p>
-
-                                </div>
-
-
-                                {/* ACTIVE PROGRESS */}
-
-                                {isActive && (
-                                    <motion.div
-                                        key={activeIndex}
-                                        initial={{ width: "0%" }}
-                                        animate={{ width: "100%" }}
-                                        transition={{
-                                            duration: 3,
-                                            ease: "linear",
-                                        }}
-                                        className="absolute bottom-0 left-0 h-[3px] bg-white"
-                                    />
-                                )}
-
-                            </button>
-                        );
-                    })}
+                    </div>
 
                 </div>
 
@@ -286,8 +256,8 @@ export default function RecentProjects() {
 
                         {/* PROJECT ARROW */}
 
-                        <a
-                            href="/projects"
+                        <Link
+                            href={`/projects/${activeProject.slug}`}
                             className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-[#111111] transition-all duration-300 hover:scale-110 hover:bg-[#0274F5] hover:text-white"
                             aria-label={`View ${activeProject.title}`}
                         >
@@ -296,7 +266,7 @@ export default function RecentProjects() {
                                 strokeWidth={2}
                                 className="transition-transform duration-300 group-hover:rotate-[-8deg]"
                             />
-                        </a>
+                        </Link>
 
                     </motion.div>
 
