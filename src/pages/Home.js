@@ -42,9 +42,10 @@ export default function Home() {
         <main className="bg-white overflow-hidden">
 
             {/* ================= DUAL-CURTAIN APERTURE PRELOADER ================= */}
-            {/* <AnimatePresence>
+            <AnimatePresence>
                 {!loaderFinished && (
                     <div className="fixed inset-0 z-[100] pointer-events-none flex flex-col justify-between overflow-hidden">
+                        {/* Top Panel */}
                         <motion.div
                             initial={{ y: "0%" }}
                             exit={{ y: "-100%" }}
@@ -70,6 +71,8 @@ export default function Home() {
                                 </span>
                             </motion.div>
                         </motion.div>
+
+                        {/* Center Seam Progress Beam */}
                         <motion.div
                             initial={{ scaleX: 0, opacity: 0 }}
                             animate={{ scaleX: 1, opacity: 1 }}
@@ -77,6 +80,8 @@ export default function Home() {
                             transition={{ duration: 0.7, ease: [0.65, 0, 0.35, 1] }}
                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[110] h-[2px] w-64 bg-gradient-to-r from-transparent via-[#0274F5] to-transparent origin-center"
                         />
+
+                        {/* Bottom Panel */}
                         <motion.div
                             initial={{ y: "0%" }}
                             exit={{ y: "100%" }}
@@ -95,7 +100,7 @@ export default function Home() {
                         </motion.div>
                     </div>
                 )}
-            </AnimatePresence> */}
+            </AnimatePresence>
 
 
             {/* ================= HERO ================= */}
