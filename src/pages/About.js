@@ -7,6 +7,7 @@ import FinalCTA from "@/components/FinalCTA";
 import MissionVision from "@/components/MissionVision";
 import AboutStats from "@/components/AboutStats";
 import RecentProjects from "@/components/RecentProjects";
+import Contactdetails from "@/components/Contactdetails";
 
 export default function About() {
     return (
@@ -335,6 +336,8 @@ export default function About() {
             <AboutStats />
 
             <RecentProjects />
+
+            <Contactdetails />
 
             <FinalCTA />
 
