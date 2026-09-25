@@ -483,23 +483,23 @@ export default function Navbar() {
                                                             key={item.id}
                                                             href={item.href}
                                                             onClick={() => setIsMobileMenuOpen(false)}
-                                                            className="flex items-center gap-3.5 rounded-xl p-3 transition hover:bg-gray-100"
+                                                            className="flex items-center gap-4 rounded-xl p-3.5 transition hover:bg-gray-100"
                                                         >
-                                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0274F5]/10 text-[#0274F5]">
-                                                                <IconComp className="h-5 w-5" />
+                                                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0274F5]/10 text-[#0274F5]">
+                                                                <IconComp className="h-6 w-6" />
                                                             </div>
                                                             <div className="flex flex-col min-w-0">
-                                                                <div className="flex items-center gap-2">
-                                                                    <span className="text-base font-semibold text-gray-900 truncate sm:text-lg">
+                                                                <div className="flex items-center gap-2.5">
+                                                                    <span className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">
                                                                         {item.title}
                                                                     </span>
                                                                     {item.badge && (
-                                                                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#0274F5]/10 text-[#0274F5]">
+                                                                        <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#0274F5]/10 text-[#0274F5]">
                                                                             {item.badge}
                                                                         </span>
                                                                     )}
                                                                 </div>
-                                                                <span className="text-xs text-gray-500 font-normal truncate mt-0.5 sm:text-sm">
+                                                                <span className="text-sm sm:text-base text-gray-500 font-normal truncate mt-0.5">
                                                                     {item.category}
                                                                 </span>
                                                             </div>
