@@ -240,7 +240,7 @@ function ResultDrivenCard() {
                     Result Driven
                 </h3>
 
-                <p className="mt-1.5 max-w-[220px] text-xs leading-[1.5] text-white/90 sm:text-sm">
+                <p className="mt-1.5 max-w-[260px] text-sm leading-[1.55] text-white/95 sm:text-sm">
                     We combine engineering expertise with intelligent
                     technology to create real-world results.
                 </p>
