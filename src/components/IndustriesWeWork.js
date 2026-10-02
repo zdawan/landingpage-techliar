@@ -44,15 +44,15 @@ export default function IndustriesWeWork() {
 
                 {/* ================= INDUSTRIES PANEL ================= */}
 
-                <div className="relative flex min-h-[420px] w-full items-center justify-center overflow-hidden rounded-[22px] bg-[#F3F8FE] px-4 py-10 sm:min-h-[460px] sm:px-8 md:min-h-[520px] md:px-12 md:py-0">
+                <div className="relative flex min-h-[220px] sm:min-h-[280px] md:min-h-[520px] w-full items-center justify-center overflow-hidden rounded-[22px] bg-[#F3F8FE] px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-0">
 
-                    <div className="relative flex w-full flex-col items-center justify-center gap-6 md:grid md:grid-cols-2 md:gap-0">
+                    <div className="relative flex w-full flex-col items-center justify-center gap-2 sm:gap-4 md:grid md:grid-cols-2 md:gap-0">
 
                         {/* TOP ON MOBILE / LEFT ON DESKTOP */}
 
                         <div className="relative z-20 flex w-full items-center justify-center md:justify-end md:pr-10 lg:pr-16">
 
-                            <h3 className="flex h-[80px] items-center whitespace-nowrap text-center text-[28px] sm:text-[32px] md:text-[38px] lg:text-[42px] font-semibold leading-none tracking-[-0.045em] text-[#111111] md:text-right">
+                            <h3 className="flex h-auto md:h-[80px] items-center whitespace-nowrap text-center text-[22px] sm:text-[28px] md:text-[38px] lg:text-[42px] font-semibold leading-none tracking-[-0.045em] text-[#111111] md:text-right">
                                 We serve
                             </h3>
 
@@ -60,15 +60,15 @@ export default function IndustriesWeWork() {
 
                         {/* BOTTOM ON MOBILE / RIGHT ON DESKTOP */}
 
-                        <div className="relative flex h-[360px] sm:h-[380px] md:h-[400px] w-full items-center justify-center overflow-hidden md:justify-start md:pl-10 lg:pl-16">
+                        <div className="relative flex h-[200px] sm:h-[260px] md:h-[400px] w-full items-center justify-center overflow-hidden md:justify-start md:pl-10 lg:pl-16">
 
                             {/* TOP FADE */}
 
-                            <div className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[110px] sm:h-[125px] bg-gradient-to-b from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent" />
+                            <div className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[60px] sm:h-[90px] md:h-[125px] bg-gradient-to-b from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent" />
 
                             {/* BOTTOM FADE */}
 
-                            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[110px] sm:h-[125px] bg-gradient-to-t from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent" />
+                            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-[60px] sm:h-[90px] md:h-[125px] bg-gradient-to-t from-[#F3F8FE] via-[#F3F8FE]/90 to-transparent" />
 
                             {/* CENTER ACTIVE INDICATOR */}
 
@@ -97,8 +97,8 @@ export default function IndustriesWeWork() {
                                                 items-center
                                                 justify-center
                                                 text-center
-                                                text-[26px]
-                                                sm:text-[30px]
+                                                text-[22px]
+                                                sm:text-[28px]
                                                 md:text-[38px]
                                                 lg:text-[42px]
                                                 font-medium
